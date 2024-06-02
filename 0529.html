@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        ul {
+            width: 100%;
+            display: flex;
+            list-style: none;
+        }
+        li {
+            font-size: 2rem;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-for="(fruit, index) in fruits" :key="index">
+            <input type="text" v-model="fruits[index]">
+        </div>
+        <ul>
+            <li class="list" v-for="(fruit, index) in fruits" :key="index" @click="changeColor">{{ fruit }}</li>
+        </ul>
+        <button @click="addFruit">按我</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                fruits: ["蘋果", "香蕉", "葡萄"]
+            },
+            methods: {
+                addFruit() {
+                    this.fruits.push("西瓜");
+                },
+                changeColor(event) {
+                    $(event.target).css("color", "red");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
